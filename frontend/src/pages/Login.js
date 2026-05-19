@@ -4,106 +4,106 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
 
-const navigate = useNavigate()
+  const navigate = useNavigate()
 
-const [email,setEmail] = useState("")
-const [password,setPassword] = useState("")
-const [error,setError] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
-const handleLogin = async(e)=>{
+  const handleLogin = async (e) => {
 
-e.preventDefault()
+    e.preventDefault()
 
-setError("")
+    setError("")
 
-if(!email.trim()){
-setError("Email is required")
-return
-}
+    if (!email.trim()) {
+      setError("Email is required")
+      return
+    }
 
-if(!password.trim()){
-setError("Password is required")
-return
-}
+    if (!password.trim()) {
+      setError("Password is required")
+      return
+    }
 
-try{
+    try {
 
-const response = await axios.post("https://netflix-login-backend-829u.onrender.com/login",
-{
-email,
-password
-}
-)
+      const response = await axios.post("https://netflix-login-backend-829u.onrender.com/login",
+        {
+          email,
+          password
+        }
+      )
 
-if(response.data.success){
+      if (response.data.success) {
 
-navigate("/dashboard")
+        navigate("/dashboard")
 
-}
+      }
 
-}catch(error){
+    } catch (error) {
 
-setError(
-error.response?.data?.message ||
-"Invalid email or password"
-)
+      setError(
+        error.response?.data?.message ||
+        "Invalid email or password"
+      )
 
-}
+    }
 
-}
+  }
 
-return(
+  return (
 
-<div className="container">
+    <div className="container">
 
-<div className="overlay">
+      <div className="overlay">
 
-<div className="login-box">
+        <div className="login-box">
 
-<h1 className="logo">NETFLIX</h1>
+          <h1 className="logo">NETFLIX</h1>
 
-<h2>Sign In</h2>
+          <h2>Sign In</h2>
 
-<form onSubmit={handleLogin}>
+          <form onSubmit={handleLogin}>
 
-<input
-type="email"
-placeholder="Email"
-value={email}
-onChange={(e)=>setEmail(e.target.value)}
-autoComplete="off"
-/>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="off"
+            />
 
-<input
-type="password"
-placeholder="Password"
-value={password}
-onChange={(e)=>setPassword(e.target.value)}
-autoComplete="new-password"
-/>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="new-password"
+            />
 
-<button type="submit">
-Sign In
-</button>
+            <button type="submit">
+              Sign In
+            </button>
 
 
-<div className="demo">
-  <p>NOTE : Use this Email ID and password for login</p>
-<p>Email: demo@netflix.com</p>
-<p>Password: 123456</p>
-</div>
+            <div className="demo">
+              <p>NOTE : Use this Email ID and password for login</p>
+              <p>Email: demo@netflix.com</p>
+              <p>Password: 123456</p>
+            </div>
 
-{error && <p>{error}</p>}
+            {error && <p>{error}</p>}
 
-</form>
+          </form>
 
-</div>
+        </div>
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-)
+  )
 
 }
 
