@@ -37,7 +37,7 @@ Welcome to Dashboard
 </h1>
 
 <p>
-Login Successful 🎉
+Login Successful 
 </p>
 
 <div className="cards">
